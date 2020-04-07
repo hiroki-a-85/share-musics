@@ -11,4 +11,16 @@
             </div>
         @endif
     </div>
+    
+    <div id="users_index">
+        <ul class="list-unstyled">
+            <div>
+                @foreach ($users as $user)
+                    @include('users.user_unit', ['user' => $user])
+                @endforeach
+            </div>
+        </ul>
+        
+        {{ $users->links('pagination::bootstrap-4') }}
+    </div>
 @endsection

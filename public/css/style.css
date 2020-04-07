@@ -5,3 +5,14 @@
     color:white;
     text-align: center;
 }
+
+#work_mini_photo{
+    background-color:#fef4f4;
+    text-align:center;
+    height:30px;
+    font-size:10px;
+}
+
+#work_mini_photo span{
+    line-height: 30px;
+}
