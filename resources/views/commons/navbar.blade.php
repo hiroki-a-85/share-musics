@@ -10,7 +10,8 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
-                    <li class="nav-item"><a href="#" class="nav-link">マイページ</a></li>
+                    <li class="nav-item">{!! link_to_route('toppage', 'トップページ', [], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('users.show', 'マイページ', ['id' => Auth::id()], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト', [], ['class' => 'nav-link']) !!}</li>
                 
                 <!-- \Request::fullUrl() : 現在のURLを取得 -->
@@ -18,6 +19,7 @@
                 <!-- 現在のURLが、signup.get(サインアップページ)またはlogin(ログインページ)の時は何も表示しない -->
                 @elseif (\Request::fullUrl() == route('signup.get') || \Request::fullUrl() == route('login'))
                 @else
+                    <li class="nav-item">{!! link_to_route('toppage', 'トップページ', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('signup.get', 'サインアップ', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('login', 'ログイン', [], ['class' => 'nav-link']) !!}</li>
                 @endif

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="top-wrapper col-sm-10 offset-sm-1">
+    <div class="top-wrapper col-sm-10 offset-sm-1 mb-5">
         <h3>お気に入りの音楽を共有<br>新しい音楽の発見</h3>
         @if (Auth::check())
         @else
@@ -13,14 +13,14 @@
     </div>
     
     <div id="users_index">
-        <ul class="list-unstyled">
-            <div>
+        <ul class="list-unstyled container">
+            <div class="row">
                 @foreach ($users as $user)
-                    @include('users.user_unit', ['user' => $user])
+                    @include('users.user_unit', ['user' => $user, 'artwork_paths' => $artwork_paths[$user->id]])
                 @endforeach
             </div>
         </ul>
         
-        {{ $users->links('pagination::bootstrap-4') }}
+        <div class="text-center"><div class="d-inline-block">{{ $users->links('pagination::bootstrap-4') }}</div></div>
     </div>
 @endsection

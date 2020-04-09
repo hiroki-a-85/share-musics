@@ -21,9 +21,9 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 //トップページ
-Route::get('/', 'UsersController@index');
+Route::get('/', 'UsersController@index')->name('toppage');
 
-//ユーザー詳細
+//ユーザー詳細(お気に入り一覧を表示)
 //RESTfulルーティング基本形 - Route::resource('テーブル名','...Controller');
 //['only' => ['show']] showアクションへの絞り込み
 // GET URI:users/{id} Name:users.show Action:UsersController@show 
@@ -35,6 +35,10 @@ Route::resource('works', 'WorksController', ['only' => ['show']]);
 //ログイン「している」状態でルーティングが可能
 Route::group(['middleware' => ['auth']], function () 
 {
+    //ユーザー詳細(投稿一覧)
+    Route::group(['prefix' => 'users/{id}'], function () {
+        Route::get('submit', 'UsersController@submit_index')->name('users.submit_index');
+    });
     
     //お気に入りへ追加ボタン、お気に入りから外すボタン
     Route::group(['prefix' => 'works/{id}'], function () {

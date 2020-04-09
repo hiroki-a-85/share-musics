@@ -16,3 +16,43 @@
 #work_mini_photo span{
     line-height: 30px;
 }
+
+#work_unit #artwork{
+    background-color:#fef4f4;
+    text-align:center;
+    width:120px;
+    height:120px;
+    font-size:8px;
+}
+
+#work_unit #artwork span{
+    line-height: 120px;
+}
+
+#work_unit #artist_name{
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+#work_unit #title{
+    font-style:oblique;
+    color:#949495;
+    margin-top: 3px;
+}
+
+.user_name{
+    font-size:20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#work_unit_detail{
+    position: relative;
+    height: 120px;
+}
+
+#remove_btn{
+    position: absolute;
+    bottom:0;
+}
