@@ -30,7 +30,7 @@ Route::get('/', 'UsersController@index')->name('toppage');
 Route::resource('users', 'UsersController', ['only' => ['show']]);
 
 //作品詳細
-Route::resource('works', 'WorksController', ['only' => ['show']]);
+// Route::get('works/{id}', 'WorksController@show')->name('works.show');
 
 //ログイン「している」状態でルーティングが可能
 Route::group(['middleware' => ['auth']], function () 
@@ -46,8 +46,8 @@ Route::group(['middleware' => ['auth']], function ()
         Route::delete('unfavorite', 'FavoritesController@destroy')->name('favorites.unfavorite');
     });
     
-    //作品投稿ページ、作品新規登録
-    Route::resource('works', 'WorksController', ['only' => ['create', 'store']]);
+    //作品投稿ページ
+    Route::resource('works', 'WorksController', ['only' => ['create' ,'store']]);
 });
 
 // // ※後で実装する

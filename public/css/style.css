@@ -18,11 +18,8 @@
 }
 
 #work_unit #artwork{
-    background-color:#fef4f4;
-    text-align:center;
     width:120px;
     height:120px;
-    font-size:8px;
 }
 
 #work_unit #artwork span{
@@ -55,4 +52,24 @@
 #remove_btn{
     position: absolute;
     bottom:0;
+}
+
+.droplist_first{
+    width:150px;
+}
+
+.submit_page_btns{
+    width:100px;
+}
+
+.radios{
+    display: inline-block;
+    width:90px;
+}
+
+@media (min-width: 576px) {
+  /* ウインドウ幅576px以上の時に適用されるスタイル */
+  #work_submit .submit_label{
+      text-align: right;
+  }
 }

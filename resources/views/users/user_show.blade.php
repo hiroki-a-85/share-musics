@@ -12,7 +12,7 @@
                <!-- このページのログインユーザのみ表示 -->
                @if (Auth::id() == $user->id)
                    <div>
-                       {!! link_to_route('works.create', '作品を新しく投稿する', []) !!}
+                       {!! link_to_route('works.create', '作品を登録する', []) !!}
                        <p class="mt-2">検索などで探して追加する：
                        <br>{!! link_to_route('toppage', 'トップページへ', []) !!}</p>
                    </div>

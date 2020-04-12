@@ -1,10 +1,15 @@
 <header class="mb-4">
     <nav class="navbar navbar-expand-sm navbar-light bg-light"> 
         <a class="navbar-brand" href="/">Share-Musics</a>
-         
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        
+        <!-- 折り畳み時のボタン -->
+        <!-- 現在のURLが、signup.get(サインアップページ)またはlogin(ログインページ)の時は表示しない -->
+        @if (\Request::fullUrl() == route('signup.get') || \Request::fullUrl() == route('login'))
+        @else
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        @endif
         
         <div class="collapse navbar-collapse" id="nav-bar">
             <ul class="navbar-nav mr-auto"></ul>

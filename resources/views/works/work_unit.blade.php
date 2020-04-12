@@ -1,5 +1,5 @@
 <div id="work_unit" class="media mb-3">
-    <div id="artwork"><span>{{ $work->artwork_path }}</span></div>
+    <div id="artwork"><img class="img-fluid" src="{{ \Storage::disk('s3')->url($work->artwork_path) }}"></div>
     <div id="work_unit_detail" class="media-body ml-2">
         <p id="artist_name">{{ $work->artist_name }}</p>
         <p id="title">{{ $work->work_name }}</p>

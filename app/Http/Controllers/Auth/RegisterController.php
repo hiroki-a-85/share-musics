@@ -29,7 +29,7 @@ class RegisterController extends Controller
      */
     protected function redirectTo()
     {
-        return route('users.show', ['id' => \Auth::id()]);;
+        return route('users.show', ['id' => \Auth::id()]);
     }
 
     /**
