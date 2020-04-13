@@ -28,11 +28,18 @@ class WorksController extends Controller
             'release_age_key' => 'required',
             'genre' => 'required',
         ]);
-        
-        //$_FILES['name属性の値'] にアップロードされたファイルに関する各種データが入る
-        //$_FILES['artwork_path']['name']:元のファイル名を取得
-        $saveFileName = $_FILES['artwork_path']['name'];
 
+        // create()によりレコードを新規作成し、
+        // そしてそのレコードのインスタンスを$new_workに代入
+        // $new_workを使用して、新しいレコードに関連した操作が可能となる
+        $new_work = $request->user()->works()->create([
+            'work_name' => $request->work_name, 
+            'artist_name' => $request->artist_name, 
+            'release_age_key' => $request->release_age_key,
+            'artwork_path' => "",
+        ]);
+
+        //$_FILES['name属性の値'] にアップロードされたファイルに関する各種データが入る
         //アップロードされたファイルはサーバ上の一時的な場所に存在
         //そのファイル名が一時ファイル名（tmp_name）
         //$_FILES['artwork_path']['tmp_name']:一時ファイル名を取得
@@ -42,20 +49,16 @@ class WorksController extends Controller
         //今回は画像のパスを与え、画像データを読み込んでいる
         //それを$contentsに格納している
         $contents = file_get_contents($img_path);
+        
+        //$_FILES['artwork_path']['name']:元のファイル名を取得
+        //一意なファイル名しておくため「'id_' . $new_work->id」と文字列を連結
+        $saveFileName = 'id_' . $new_work->id . $_FILES['artwork_path']['name'];
 
         //Storageファサードのdiskメソッドを使用しs3へのアクセスを指定
         //putメソッドはファイル内容をディスクに保存する
         Storage::disk('s3')->put($saveFileName, $contents);
         
-        // create()によりレコードを新規作成し、
-        // そしてそのレコードのインスタンスを$new_workに代入
-        // $new_workを使用して、新しいレコードに関連した操作が可能となる
-        $new_work = $request->user()->works()->create([
-            'work_name' => $request->work_name, 
-            'artist_name' => $request->artist_name, 
-            'release_age_key' => $request->release_age_key,
-            'artwork_path' => $saveFileName,
-        ]);
+        $new_work->update(['artwork_path' => $saveFileName]);
         
         //新しく作成した作品をお気に入りに追加
         $request->user()->favorite($new_work->id);

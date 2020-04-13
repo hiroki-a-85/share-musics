@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Work extends Model
 {
@@ -28,5 +29,23 @@ class Work extends Model
     public function genres()
     {
         return $this->belongsToMany(Genre::class, 'multiple_genres', 'work_id', 'genre_id')->withTimestamps();
+    }
+    
+    //Laravel:Eloquent「アクセサ」
+    //既存のカラムを用いて、オリジナルの値を定義
+    //テーブルにs3_artwork_urlというカラムは無いが、これで$this->s3_artwork_urlとしてアクセスが可能
+    //あたかもs3_artwork_urlカラムが存在しているかのように値の取得が可能
+    public function getS3ArtworkUrlAttribute()
+    {
+        $disk = Storage::disk('s3');
+        
+        // S3上に指定ファイルが存在するか確認
+        if($disk->exists($this->artwork_path))
+        {
+            // S3の完全URLを得る
+            return $disk->url($this->artwork_path);
+        } else {
+            return "No Photo";
+        }
     }
 }
