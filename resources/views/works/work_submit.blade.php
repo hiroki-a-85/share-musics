@@ -72,14 +72,14 @@
                                             <!-- name属性の文字列の末尾に[]をつける（今回は、「genre[]」）-->
                                             <!-- これにより複数選択した時、受け取りの変数を配列の形でそれぞれの値を取得できる -->
                                             <!-- 一つの選択でもやはり配列の形式 -->
-                                            <td class="droplist_first">{{ Form::checkbox('genre[]', $genres[$i]->genre_name) }}　{{ $genres[$i]->genre_name }}</td>
+                                            <td class="droplist_first">{{ Form::checkbox('genre[]', $genres[$i]->id) }}　{{ $genres[$i]->genre_name }}</td>
                                         </tr>
                                     @elseif ($i % 2 == 1)
                                         @continue
                                     @else
                                         <tr class="dropdown-item">
-                                            <td class="droplist_first">{{ Form::checkbox('genre[]', $genres[$i]->genre_name) }}　{{ $genres[$i]->genre_name }}</td>
-                                            <td>{{ Form::checkbox('genre[]', $genres[$i+1]->genre_name) }}　{{ $genres[$i+1]->genre_name }}</td>
+                                            <td class="droplist_first">{{ Form::checkbox('genre[]', $genres[$i]->id) }}　{{ $genres[$i]->genre_name }}</td>
+                                            <td>{{ Form::checkbox('genre[]', $genres[$i+1]->id) }}　{{ $genres[$i+1]->genre_name }}</td>
                                         </tr>
                                     @endif
                                 @endfor

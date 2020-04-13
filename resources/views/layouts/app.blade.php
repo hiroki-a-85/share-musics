@@ -5,6 +5,7 @@
         <title>Share-Musics</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
         
         <!-- asset('ファイルパス')はpublicディレクトリのパス（アセットへのURL）を返すヘルパー関数 -->
         <!-- css, js, 画像などの読み込みはassetを使う -->

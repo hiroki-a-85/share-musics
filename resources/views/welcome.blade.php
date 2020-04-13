@@ -16,7 +16,7 @@
         <ul class="list-unstyled container">
             <div class="row">
                 @foreach ($users as $user)
-                    @include('users.user_unit', ['user' => $user, 'artwork_paths' => $artwork_paths[$user->id]])
+                    @include('users.user_unit', ['user' => $user, 's3_artwork_urls' => $s3_artwork_urls[$user->id]])
                 @endforeach
             </div>
         </ul>

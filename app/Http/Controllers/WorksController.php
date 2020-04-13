@@ -21,22 +21,12 @@ class WorksController extends Controller
     {
         $this->validate($request, [
             
-            //max:10000 10MB以内である
-            'artwork_path' => 'required|file|image|max:10000',
+            //max:5000 5MB以内である
+            'artwork_path' => 'required|file|image|max:5000',
             'work_name' => 'required|string|unique:works,work_name|max:191',
             'artist_name' => 'required|string|max:191',
             'release_age_key' => 'required',
             'genre' => 'required',
-        ]);
-
-        // create()によりレコードを新規作成し、
-        // そしてそのレコードのインスタンスを$new_workに代入
-        // $new_workを使用して、新しいレコードに関連した操作が可能となる
-        $new_work = $request->user()->works()->create([
-            'work_name' => $request->work_name, 
-            'artist_name' => $request->artist_name, 
-            'release_age_key' => $request->release_age_key,
-            'artwork_path' => "",
         ]);
 
         //$_FILES['name属性の値'] にアップロードされたファイルに関する各種データが入る
@@ -51,21 +41,29 @@ class WorksController extends Controller
         $contents = file_get_contents($img_path);
         
         //$_FILES['artwork_path']['name']:元のファイル名を取得
-        //一意なファイル名しておくため「'id_' . $new_work->id」と文字列を連結
-        $saveFileName = 'id_' . $new_work->id . $_FILES['artwork_path']['name'];
+        //一意なファイル名にしておくため、先頭に文字列を連結
+        $save_file_name = date('Ymd_His') . 'userid_' . $request->user()->id . $_FILES['artwork_path']['name'];
 
         //Storageファサードのdiskメソッドを使用しs3へのアクセスを指定
         //putメソッドはファイル内容をディスクに保存する
-        Storage::disk('s3')->put($saveFileName, $contents);
-        
-        $new_work->update(['artwork_path' => $saveFileName]);
+        Storage::disk('s3')->put($save_file_name, $contents);
+
+        // create()によりレコードを新規作成し、
+        // そしてそのレコードのインスタンスを$new_workに代入
+        // $new_workを使用して、新しいレコードに関連した操作が可能となる
+        $new_work = $request->user()->works()->create([
+            'work_name' => $request->work_name, 
+            'artist_name' => $request->artist_name, 
+            'release_age_key' => $request->release_age_key,
+            'artwork_path' => $save_file_name,
+        ]);
         
         //新しく作成した作品をお気に入りに追加
         $request->user()->favorite($new_work->id);
         
         //新しく作成した作品にジャンルを設定する
         for($i = 0;$i < count($request->genre);$i++){
-            $genreId = Genre::where('genre_name', $request->genre[$i])->first()->id;
+            $genreId = $request->genre[$i];
             $new_work->genres()->attach($genreId);
         }
         

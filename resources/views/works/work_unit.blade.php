@@ -3,7 +3,7 @@
     <!-- 「$work->s3_artwork_url」 Laravel:Eloquent「アクセサ」の機能によるもの -->
     <!-- Workモデルにて定義 -->
     @if ($work->s3_artwork_url == "No Photo")
-        <div id="artwork_false">{{ $work->s3_artwork_url }}</div>
+        <div id="artwork_false"><i class="fas fa-compact-disc my-grey my-big"></i></div>
     @else
         <div id="artwork"><img class="img-fluid" src="{{ $work->s3_artwork_url }}"></div>
     @endif

@@ -6,15 +6,28 @@
     text-align: center;
 }
 
-#work_mini_photo{
-    background-color:#fef4f4;
-    text-align:center;
-    height:30px;
-    font-size:10px;
+#user_unit #username_and_workphotos{
+    font-size:18px;
+    height:120px;
+    position: relative;
 }
 
-#work_mini_photo span{
-    line-height: 30px;
+#user_unit #username_and_workphotos #workphotos_area{
+    height:70px;
+    position: absolute;
+    bottom:0;
+}
+
+#user_unit #work_mini_photo{
+    height:70px;
+    width:70px;
+}
+
+#user_unit #work_mini_photo_false{
+    height:70px;
+    width:70px;
+    line-height: 70px;
+    text-align: center;
 }
 
 #work_unit #artwork{
@@ -26,10 +39,6 @@
     width:120px;
     height:120px;
     text-align: center;
-    line-height: 120px;
-}
-
-#work_unit #artwork span{
     line-height: 120px;
 }
 
@@ -45,33 +54,45 @@
     margin-top: 3px;
 }
 
-.user_name{
+#work_unit #work_unit_detail{
+    position: relative;
+    height: 120px;
+}
+
+#work_unit #work_unit_detail #remove_btn{
+    position: absolute;
+    bottom:0;
+}
+
+#user_show_wrapper .user_name{
     font-size:20px;
     font-weight: bold;
     text-align: center;
 }
 
-#work_unit_detail{
-    position: relative;
-    height: 120px;
-}
-
-#remove_btn{
-    position: absolute;
-    bottom:0;
-}
-
-.droplist_first{
+#work_submit .droplist_first{
     width:150px;
 }
 
-.submit_page_btns{
+#work_submit .submit_page_btns{
     width:100px;
 }
 
-.radios{
+#work_submit .radios{
     display: inline-block;
     width:90px;
+}
+
+.my-grey{
+    color:#dcdddd;
+}
+
+.my-big{
+    font-size: 4em;
+}
+
+.my-small{
+    font-size: 2em;
 }
 
 @media (min-width: 576px) {
