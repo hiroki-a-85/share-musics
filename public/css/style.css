@@ -1,3 +1,99 @@
+
+/**
+ * 
+ *
+ * ウインドウ幅576px「以上」の時に適用されるスタイル
+ */
+
+@media (min-width: 576px) {
+    #work_submit .submit_label{
+        text-align: right;
+    }
+    
+    #user_unit{
+        width:350px;
+    }
+  
+    #user_unit #user_photo{
+        height:120px;
+        width:120px;
+    }
+    
+    #user_unit #username_and_workphotos{
+        font-size:18px;
+        height:120px;
+        position: relative;
+    }
+    
+    #user_unit #username_and_workphotos #workphotos_area{
+        height:70px;
+        position: absolute;
+        bottom:0;
+    }
+    
+    #user_unit #work_mini_photo{
+        height:70px;
+        width:70px;
+    }
+    
+    #user_unit #work_mini_photo_false{
+        height:70px;
+        width:70px;
+        line-height: 70px;
+        text-align: center;
+    }
+    
+    .top-wrapper .title{
+        font-size:30px;
+    }
+}
+
+/**
+ * 
+ *
+ * ウインドウ幅576px「以下」の時に適用されるスタイル
+ */
+
+@media (max-width: 576px) {
+    
+   #user_unit{
+       width:265px;
+   }
+
+   #user_unit #user_photo{
+        height:95px;
+        width:95px;
+    }
+    
+    #user_unit #username_and_workphotos{
+        font-size:17px;
+        height:95px;
+        position: relative;
+    }
+    
+    #user_unit #username_and_workphotos #workphotos_area{
+        height:50px;
+        position: absolute;
+        bottom:0;
+    }
+    
+    #user_unit #work_mini_photo{
+        height:50px;
+        width:50px;
+    }
+    
+    #user_unit #work_mini_photo_false{
+        height:50px;
+        width:50px;
+        line-height: 50px;
+        text-align: center;
+    } 
+    
+    .top-wrapper .title{
+        font-size:25px;
+    }
+}
+
 .top-wrapper{
     background-image: url(/images/photoac_record1.jpg);
     background-size:cover;
@@ -6,29 +102,6 @@
     text-align: center;
 }
 
-#user_unit #username_and_workphotos{
-    font-size:18px;
-    height:120px;
-    position: relative;
-}
-
-#user_unit #username_and_workphotos #workphotos_area{
-    height:70px;
-    position: absolute;
-    bottom:0;
-}
-
-#user_unit #work_mini_photo{
-    height:70px;
-    width:70px;
-}
-
-#user_unit #work_mini_photo_false{
-    height:70px;
-    width:70px;
-    line-height: 70px;
-    text-align: center;
-}
 
 #work_unit #artwork{
     width:120px;
@@ -70,6 +143,30 @@
     text-align: center;
 }
 
+#work_show_wrapper #artist_name{
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+}
+
+#work_show_wrapper #work_name{
+    font-style:oblique;
+    font-size: 17px;
+    text-align: center;
+}
+
+#work_show_wrapper #release_age{
+    font-style:oblique;
+    opacity:0.7;
+    text-align: center;
+}
+
+#work_show_wrapper #genres{
+    font-style:oblique;
+    font-weight: 200;
+    text-align: center;
+}
+
 #work_submit .droplist_first{
     width:150px;
 }
@@ -93,11 +190,4 @@
 
 .my-small{
     font-size: 2em;
-}
-
-@media (min-width: 576px) {
-  /* ウインドウ幅576px以上の時に適用されるスタイル */
-  #work_submit .submit_label{
-      text-align: right;
-  }
 }
