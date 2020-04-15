@@ -25,13 +25,7 @@
        
                    <!-- 「Request::is('users/' . $user->id) ? 'active' : '' 」 は、 /users/{id} というURLの場合には、activeのclassを付与するコード -->
                    <li class="nav-item"><a href="{{ route('users.show', ['id' => $user->id]) }}" class="nav-link {{ Request::is('users/' . $user->id) ? 'active' : '' }}">お気に入り作品</a></li>
-                   
-                   <!-- 「投稿した作品」タブはこのページのログインユーザのみ表示 -->
-                   @if (Auth::id() == $user->id)
                    <li class="nav-item"><a href="{{ route('users.submit_index', ['id' => $user->id]) }}" class="nav-link {{ Request::is('users/*/submit') ? 'active' : '' }}">投稿した作品</a></li>
-                   @else
-                   @endif
-                   
                </ul>
                
                <!-- .list-untyled:先頭の・無し(bootstrap) -->

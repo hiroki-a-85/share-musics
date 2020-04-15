@@ -29,14 +29,14 @@ Route::get('/', 'UsersController@index')->name('toppage');
 // GET URI:users/{id} Name:users.show Action:UsersController@show 
 Route::resource('users', 'UsersController', ['only' => ['show']]);
 
+//ユーザー詳細(投稿一覧)
+Route::group(['prefix' => 'users/{id}'], function () {
+    Route::get('submit', 'UsersController@submit_index')->name('users.submit_index');
+});
+
 //ログイン「している」状態でルーティングが可能
 Route::group(['middleware' => ['auth']], function () 
 {
-    //ユーザー詳細(投稿一覧)
-    Route::group(['prefix' => 'users/{id}'], function () {
-        Route::get('submit', 'UsersController@submit_index')->name('users.submit_index');
-    });
-    
     //お気に入りへ追加ボタン、お気に入りから外すボタン
     Route::group(['prefix' => 'works/{id}'], function () {
         Route::post('favorite', 'FavoritesController@store')->name('favorites.favorite');

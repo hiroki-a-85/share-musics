@@ -21,9 +21,12 @@
                </div>
                
                <div class="d-inline-block mt-4 mb-5">
-                   {!! Form::open(['route' => ['favorites.favorite', $work->id], 'method' => 'post']) !!}
-                       {!! Form::submit('お気に入りに追加', ['class' => "btn btn-primary"]) !!}
-                   {!! Form::close() !!}
+                  @if (\Auth::user()->is_in_favorites($work->id))
+                  @else
+                      {!! Form::open(['route' => ['favorites.favorite', $work->id], 'method' => 'post']) !!}
+                          {!! Form::submit('お気に入りに追加', ['class' => "btn btn-primary"]) !!}
+                      {!! Form::close() !!}
+                  @endif
                </div>
            </div>
        
