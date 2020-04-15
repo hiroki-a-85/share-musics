@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Genre;
 use Illuminate\Support\Facades\Storage;
+use App\Work;
+use App\Genre;
 
 class WorksController extends Controller
 {
@@ -21,8 +22,8 @@ class WorksController extends Controller
     {
         $this->validate($request, [
             
-            //max:5000 5MB以内である
-            'artwork_path' => 'required|file|image|max:5000',
+            //max:2000 2MB以内である
+            'artwork_path' => 'required|file|image|max:2000',
             'work_name' => 'required|string|unique:works,work_name|max:191',
             'artist_name' => 'required|string|max:191',
             'release_age_key' => 'required',
@@ -68,5 +69,25 @@ class WorksController extends Controller
         }
         
         return redirect()->route('users.show', ['id' => \Auth::id()]);
+    }
+    
+    public function show($id)
+    {
+        $work = Work::find($id);
+        
+        $genres = $work->genres()->get();
+        
+        $users = $work->favorite_users()->orderBy('favorites.updated_at', 'desc')->paginate(4);
+        
+        $three_fav_works = [];
+        foreach($users as $user){
+            //各ユーザのお気に入りを３つ取得
+            $works = $user->favorites()->where('works.id', '!=', $work->id)->limit(3)->get();
+            
+            //連想配列$three_fav_works:['あるユーザのid' => [上記で定義したコレクション]]を作成
+            $three_fav_works[$user->id] = $works;
+        }
+        
+        return view('works.work_show', ['work' => $work, 'genres' => $genres, 'users' => $users, 'three_fav_works' => $three_fav_works]);
     }
 }

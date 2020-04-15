@@ -11,16 +11,16 @@ class UsersController extends Controller
     {
         $users = User::orderBy('id', 'desc')->paginate(4);
         
-        $s3_artwork_urls = [];
+        $three_fav_works = [];
         foreach($users as $user){
-            //各ユーザのお気に入りを３つ取得、それぞれのアクセサ:s3_artwork_urlの値をpluckメソッドで配列で取得
-            $urls = $user->favorites()->limit(3)->get()->pluck('s3_artwork_url');
+            //各ユーザのお気に入りを３つ取得
+            $works = $user->favorites()->limit(3)->get();
             
-            //連想配列$s3_artwork_urls:['あるユーザのid' => [上記で定義した配列]]を作成
-            $s3_artwork_urls[$user->id] = $urls;
+            //連想配列$three_fav_works:['あるユーザのid' => [上記で定義したコレクション]]を作成
+            $three_fav_works[$user->id] = $works;
         }
         
-        return view('welcome', ['users' => $users, 's3_artwork_urls' => $s3_artwork_urls]);
+        return view('welcome', ['users' => $users, 'works' => $three_fav_works]);
     }
     
     public function show($id)
