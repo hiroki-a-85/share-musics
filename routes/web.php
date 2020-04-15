@@ -29,9 +29,6 @@ Route::get('/', 'UsersController@index')->name('toppage');
 // GET URI:users/{id} Name:users.show Action:UsersController@show 
 Route::resource('users', 'UsersController', ['only' => ['show']]);
 
-//作品詳細
-// Route::get('works/{id}', 'WorksController@show')->name('works.show');
-
 //ログイン「している」状態でルーティングが可能
 Route::group(['middleware' => ['auth']], function () 
 {
@@ -47,8 +44,18 @@ Route::group(['middleware' => ['auth']], function ()
     });
     
     //作品投稿ページ
-    Route::resource('works', 'WorksController', ['only' => ['create' ,'store']]);
+    Route::resource('works', 'WorksController', ['only' => ['create', 'store']]);
 });
+
+//作品投稿ページ(works.create)へアクセスする時、
+//BadMethodCallException Method [show] does not exist on...  や、
+//showアクションの中の$work->genres()がnullであるなどのエラー
+//createアクションを参照させたい所なぜかshowアクションを参照していた
+//showアクションを後ろに持ってくると正常に動作
+//「Laravelのルーティング設定：上に書かれた設定が優先的に実行される」
+
+//作品詳細
+Route::resource('works', 'WorksController', ['only' => ['show']]);
 
 // // ※後で実装する
 // //ジャンルでの作品の絞り込み一覧表示
