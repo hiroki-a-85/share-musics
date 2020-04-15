@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="text-center mt-5 mb-5">
-        <h3>作品を登録／お気に入りに追加</h3>
+        <h3>作品を登録／<br id="work_submit_title">お気に入りに追加</h3>
     </div>
 
     <div class="container">
@@ -14,8 +14,8 @@
                 <!-- formタグにenctype="multipart/form-data"属性が追加される -->
                 {!! Form::open(['route' => 'works.store', 'files' => true]) !!}
                     <div class="form-group row">
-                        {!! Form::label('artwork_path', '作品画像：', ['class' => 'col-3 col-sm-4 col-form-label submit_label']) !!}
-                        <div class="col-9 col-sm-8">
+                        {!! Form::label('artwork_path', '作品画像：', ['class' => 'col-sm-4  col-form-label submit_label']) !!}
+                        <div class="col-sm-8">
                             {!! Form::file('artwork_path', old('artwork_path'), ['class' => 'form-control']) !!}
                         </div>
                     </div>
@@ -35,9 +35,9 @@
                     </div>
     
                     <div class="form-group row">
-                        {!! Form::label('release_age', '作成された年代：', ['class' => 'col-4 col-sm-4 col-form-label submit_label']) !!}
+                        {!! Form::label('release_age', '作成された年代：', ['class' => 'col-sm-4 col-form-label submit_label']) !!}
                         
-                        <div class="col-8 col-sm-8">
+                        <div class="col-sm-8">
                             <div>
                                 <span class="radios">{{ Form::radio('release_age_key', '2020') }}　2020~</span>
                                 <span class="radios">{{ Form::radio('release_age_key', '2010') }}　2010~</span>
@@ -55,35 +55,35 @@
                         </div>
                     </div>
                     
-                    <div class="form-group row">
-                        {!! Form::label('release_age', 'ジャンル：', ['class' => 'col-4 col-sm-4 col-form-label submit_label']) !!}
+                    <div class="row">
+                        {!! Form::label('genre', 'ジャンル：', ['class' => 'col-sm-4 submit_label']) !!}
                         
-                        <div class="dropdown col-8 col-sm-8">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">ジャンル</button>
-                            
-                            <!-- ドロップダウンの一行を２項目表示にするための記述 -->
-                            <table class="dropdown-menu">
-                                @for ($i = 0;$i < $genre_counts;$i++)
-                                
-                                    <!-- $genre_countsが奇数かつ$iが最後の数字の時、一行１項目にするため -->
-                                    @if ($genre_counts % 2 == 1 && $i == $genre_counts - 1)
-                                        <tr class="dropdown-item">
-                                            
-                                            <!-- name属性の文字列の末尾に[]をつける（今回は、「genre[]」）-->
-                                            <!-- これにより複数選択した時、受け取りの変数を配列の形でそれぞれの値を取得できる -->
-                                            <!-- 一つの選択でもやはり配列の形式 -->
-                                            <td class="droplist_first">{{ Form::checkbox('genre[]', $genres[$i]->id) }}　{{ $genres[$i]->genre_name }}</td>
-                                        </tr>
-                                    @elseif ($i % 2 == 1)
-                                        @continue
-                                    @else
-                                        <tr class="dropdown-item">
-                                            <td class="droplist_first">{{ Form::checkbox('genre[]', $genres[$i]->id) }}　{{ $genres[$i]->genre_name }}</td>
-                                            <td>{{ Form::checkbox('genre[]', $genres[$i+1]->id) }}　{{ $genres[$i+1]->genre_name }}</td>
-                                        </tr>
-                                    @endif
-                                @endfor
-                            </table>
+                        <div class="col-sm-8">
+                            <details>
+                                <summary>ジャンル</summary>
+                                <table>
+                                    @for ($i = 0;$i < $genre_counts;$i++)
+                                    
+                                        <!-- $genre_countsが奇数かつ$iが最後の数字の時、一行１項目にするため -->
+                                        @if ($genre_counts % 2 == 1 && $i == $genre_counts - 1)
+                                            <tr>
+                                                
+                                                <!-- name属性の文字列の末尾に[]をつける（今回は、「genre[]」）-->
+                                                <!-- これにより複数選択した時、受け取りの変数を配列の形でそれぞれの値を取得できる -->
+                                                <!-- 一つの選択でもやはり配列の形式 -->
+                                                <td class="droplist_first">{{ Form::checkbox('genre[]', $genres[$i]->id) }}　{{ $genres[$i]->genre_name }}</td>
+                                            </tr>
+                                        @elseif ($i % 2 == 1)
+                                            @continue
+                                        @else
+                                            <tr>
+                                                <td class="droplist_first">{{ Form::checkbox('genre[]', $genres[$i]->id) }}　{{ $genres[$i]->genre_name }}</td>
+                                                <td>{{ Form::checkbox('genre[]', $genres[$i+1]->id) }}　{{ $genres[$i+1]->genre_name }}</td>
+                                            </tr>
+                                        @endif
+                                    @endfor
+                                </table>
+                            </details>
                         </div>
                     </div>
                     

@@ -46,6 +46,10 @@
     .top-wrapper .title{
         font-size:30px;
     }
+    
+    #work_submit_title{
+        display:none;
+    }
 }
 
 /**
