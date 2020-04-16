@@ -10,6 +10,9 @@
         <!-- asset('ファイルパス')はpublicディレクトリのパス（アセットへのURL）を返すヘルパー関数 -->
         <!-- css, js, 画像などの読み込みはassetを使う -->
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        
+        <!-- jQueryの読み込み -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -21,6 +24,9 @@
             
             @yield('content')
         </div>
+        
+        <!-- script.jsの読み込み -->
+        <script src="{{ asset('js/script.js') }}"></script>
         
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>

@@ -90,4 +90,11 @@ class WorksController extends Controller
         
         return view('works.work_show', ['work' => $work, 'genres' => $genres, 'users' => $users, 'three_fav_works' => $three_fav_works]);
     }
+    
+    public function by_release_age_index($year)
+    {
+        $works = Work::where('release_age_key', $year)->paginate(4);
+        
+        return view('works.result_works_index', ['works' => $works, 'year' => $year]);
+    }
 }

@@ -195,3 +195,11 @@
 .my-small{
     font-size: 2em;
 }
+
+#year_links{
+    display:block;
+}
+
+#genres_links{
+    display:none;
+}
