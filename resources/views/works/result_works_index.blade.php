@@ -2,9 +2,12 @@
 
 @section('content')
    
-   <div class="col-sm-5 offset-sm-1 mb-5">
-       
-       <p>{{ $year }}年代の作品：</p>
+   <div class="col-sm-5 offset-sm-1 mb-3">
+       @if (Request::is('genres/*'))
+           <p>{{ $genre->genre_name }}の作品：</p>
+       @elseif (Request::is('release_age/*'))
+           <p>{{ $year }}年代の作品：</p>
+       @endif
        <hr>
        <ul class="list-unstyled">
            @foreach ($works as $work)

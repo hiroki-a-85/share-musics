@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Genre;
 
 class UsersController extends Controller
 {
     public function index()
     {
         $users = User::orderBy('id', 'desc')->paginate(4);
+        
+        $genres = Genre::all();
         
         $three_fav_works = [];
         foreach($users as $user){
@@ -20,7 +23,7 @@ class UsersController extends Controller
             $three_fav_works[$user->id] = $works;
         }
         
-        return view('welcome', ['users' => $users, 'works' => $three_fav_works]);
+        return view('welcome', ['users' => $users, 'works' => $three_fav_works, 'genres' => $genres]);
     }
     
     public function show($id)

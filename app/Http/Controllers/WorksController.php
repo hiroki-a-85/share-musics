@@ -97,4 +97,15 @@ class WorksController extends Controller
         
         return view('works.result_works_index', ['works' => $works, 'year' => $year]);
     }
+    
+    public function by_genre_index($genreId)
+    {
+        $genre = Genre::find($genreId);
+        
+        $works = $genre->works()->paginate(4);
+        
+        return view('works.result_works_index', ['works' => $works, 'genre' => $genre]);
+        
+        // return view('test', ['genre' => $genre]);
+    }
 }

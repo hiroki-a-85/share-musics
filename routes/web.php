@@ -60,7 +60,6 @@ Route::resource('works', 'WorksController', ['only' => ['show']]);
 //年代での作品の絞り込み一覧表示
 Route::get('release_age/{year}', 'WorksController@by_release_age_index')->name('works.by_release_age_index');
 
-// // ※後で実装する
-// //ジャンルでの作品の絞り込み一覧表示
-// Route::get('genres/{id}/index', 'WorksController@by_genre_index')->name('works.by_genre_index');
+//ジャンルでの作品の絞り込み一覧表示
+Route::get('genres/{genreId}', 'WorksController@by_genre_index')->name('works.by_genre_index');
 
