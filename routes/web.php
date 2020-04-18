@@ -63,3 +63,6 @@ Route::get('release_age/{year}', 'WorksController@by_release_age_index')->name('
 //ジャンルでの作品の絞り込み一覧表示
 Route::get('genres/{genreId}', 'WorksController@by_genre_index')->name('works.by_genre_index');
 
+//検索
+Route::get('search','WorksController@search')->name('search');
+

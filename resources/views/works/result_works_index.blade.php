@@ -7,6 +7,8 @@
            <p>{{ $genre->genre_name }}の作品：</p>
        @elseif (Request::is('release_age/*'))
            <p>{{ $year }}年代の作品：</p>
+       @else
+           <p>「{{ $keyword }}」での検索結果：</p>
        @endif
        <hr>
        <ul class="list-unstyled">

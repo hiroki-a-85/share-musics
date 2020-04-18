@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="text-center">
-        <h1>サインアップ</h1>
+        <h1>アカウント作成</h1>
     </div>
 
     <div class="container">
@@ -31,7 +31,7 @@
                     </div>
                     
                     <div class="text-center">
-                        {!! Form::submit('サインアップ', ['class' => 'btn btn-primary d-inline-block pl-4 pr-4']) !!}
+                        {!! Form::submit('作成', ['class' => 'btn btn-primary d-inline-block pl-4 pr-4']) !!}
                     </div>
                         
                 {!! Form::close() !!}

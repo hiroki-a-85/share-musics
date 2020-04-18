@@ -105,7 +105,21 @@ class WorksController extends Controller
         $works = $genre->works()->paginate(4);
         
         return view('works.result_works_index', ['works' => $works, 'genre' => $genre]);
+    }
+    
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+ 
+        $query = Work::query();
+ 
+        if (!empty($keyword)) {
+            $query->where('work_name', 'LIKE', "%{$keyword}%")
+                ->orWhere('artist_name', 'LIKE', "%{$keyword}%");
+        }
+ 
+        $works = $query->paginate(4);
         
-        // return view('test', ['genre' => $genre]);
+        return view('works.result_works_index', ['works' => $works, 'keyword' => $keyword]);
     }
 }

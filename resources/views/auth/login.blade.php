@@ -27,7 +27,7 @@
                 {!! Form::close() !!}
                 
                 <div class="mt-4 text-center">
-                    {!! link_to_route('signup.get', 'サインアップ', [], ['class' => 'd-inline-block mr-5']) !!}
+                    {!! link_to_route('signup.get', 'アカウント作成', [], ['class' => 'd-inline-block mr-5']) !!}
                     {!! link_to('/', 'トップページ', ['class' => 'd-inline-block ml-5']) !!}
                 </div>
             </div>

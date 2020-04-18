@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Genre;
+use App\Work;
 
 class UsersController extends Controller
 {
     public function index()
     {
         $users = User::orderBy('id', 'desc')->paginate(4);
-        
-        $genres = Genre::all();
         
         $three_fav_works = [];
         foreach($users as $user){
@@ -23,7 +22,28 @@ class UsersController extends Controller
             $three_fav_works[$user->id] = $works;
         }
         
-        return view('welcome', ['users' => $users, 'works' => $three_fav_works, 'genres' => $genres]);
+        $counts_of_works_by_age = [];
+        for ($i = 0;(1950 + (10 * $i)) <= 2020;$i++){
+            $age = (1950 + (10 * $i));
+            $counts_of_works_by_age[$age] = Work::where('release_age_key', $age)->get()->count();
+        }
+        
+        $genres = Genre::all();
+        
+        $counts_of_works_by_genre = [];
+        foreach ($genres as $genre){
+           $counts_of_works_by_genre[$genre->id] = $genre->works()->get()->count();
+        }
+        
+        $data = [
+            'users' => $users, 
+            'works' => $three_fav_works, 
+            'genres' => $genres,
+            'counts_of_works_by_age' => $counts_of_works_by_age,
+            'counts_of_works_by_genre' => $counts_of_works_by_genre,
+            ];
+        
+        return view('welcome', $data);
     }
     
     public function show($id)

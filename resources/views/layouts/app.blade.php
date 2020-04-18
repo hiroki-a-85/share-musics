@@ -7,6 +7,9 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
         <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
         
+        <!-- Google Fontsの読み込み -->
+        <link href="https://fonts.googleapis.com/css2?family=GFS+Neohellenic&display=swap" rel="stylesheet">
+        
         <!-- asset('ファイルパス')はpublicディレクトリのパス（アセットへのURL）を返すヘルパー関数 -->
         <!-- css, js, 画像などの読み込みはassetを使う -->
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
