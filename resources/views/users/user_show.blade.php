@@ -12,9 +12,9 @@
                <!-- このページのログインユーザのみ表示 -->
                @if (Auth::id() == $user->id)
                    <div>
-                       {!! link_to_route('works.create', '作品を登録する', []) !!}
-                       <p class="mt-2">検索などで探して追加する：
-                       <br>{!! link_to_route('toppage', 'トップページへ', []) !!}</p>
+                       {!! link_to_route('works.create', '作品を登録する', [], ['class' => "btn btn-primary"]) !!}
+                       <p class="mt-4">作品を探してお気に入りへ追加：</p>
+                       <p>{!! link_to_route('toppage', 'トップページへ', []) !!}</p>
                    </div>
                @else
                @endif
@@ -25,7 +25,7 @@
        
                    <!-- 「Request::is('users/' . $user->id) ? 'active' : '' 」 は、 /users/{id} というURLの場合には、activeのclassを付与するコード -->
                    <li class="nav-item"><a href="{{ route('users.show', ['id' => $user->id]) }}" class="nav-link {{ Request::is('users/' . $user->id) ? 'active' : '' }}">お気に入り作品</a></li>
-                   <li class="nav-item"><a href="{{ route('users.submit_index', ['id' => $user->id]) }}" class="nav-link {{ Request::is('users/*/submit') ? 'active' : '' }}">投稿した作品</a></li>
+                   <li class="nav-item"><a href="{{ route('users.submit_index', ['id' => $user->id]) }}" class="nav-link {{ Request::is('users/*/submit') ? 'active' : '' }}">登録した作品</a></li>
                </ul>
                
                <!-- .list-untyled:先頭の・無し(bootstrap) -->

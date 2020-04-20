@@ -32,27 +32,30 @@
        <div id="search_area" class="bg-light">
             <p>作品を探す</p>
             <hr>
-            <div id="search_box" class="mt-4">
+            <div id="search_box">
                 {!! Form::open(['route' => 'search', 'method' => 'get', 'id' => 'search_form', 'class' => 'nav-item']) !!}
                     {!! Form::text('keyword', null, ['id' => 'search_form_input', 'class' => 'form-control', 'placeholder' => '作品名、アーティスト名で検索']) !!}
                     {{ Form::button('<i class="fas fa-search"></i>', ['type' => 'submit', 'id' => 'search_form_btn']) }}
                 {!! Form::close() !!}
             </div>
             
-            <details class="mt-4">
-                <summary>年代から探す</summary>
+            <p class="mt-4">年代から探す</p>
+            <div id="year_links_area" class="d-flex justify-content-start">
+                <ul class="list-unstyled mr-5">
+                    <li class="year_links">{!! link_to_route('works.by_release_age_index', "1950 ({$counts_of_works_by_age[1950]})", ['year' => 1950]) !!}</li>
+                    <li class="year_links">{!! link_to_route('works.by_release_age_index', "1960 ({$counts_of_works_by_age[1960]})", ['year' => 1960]) !!}</li>
+                    <li class="year_links">{!! link_to_route('works.by_release_age_index', "1970 ({$counts_of_works_by_age[1970]})", ['year' => 1970]) !!}</li>
+                    <li class="year_links">{!! link_to_route('works.by_release_age_index', "1980 ({$counts_of_works_by_age[1980]})", ['year' => 1980]) !!}</li>
+                </ul>    
                 <ul class="list-unstyled">
-                    @for ($i = 0;(1950 + (10 * $i)) <= 2020;$i++)
-                        @php
-                            $age = (1950 + (10 * $i));
-                        @endphp
-                        <li class="year_links">{!! link_to_route('works.by_release_age_index', "{$age} ({$counts_of_works_by_age[$age]})", ['year' => $age]) !!}</li>
-                    @endfor
+                    <li class="year_links">{!! link_to_route('works.by_release_age_index', "1990 ({$counts_of_works_by_age[1990]})", ['year' => 1990]) !!}</li>
+                    <li class="year_links">{!! link_to_route('works.by_release_age_index', "2000 ({$counts_of_works_by_age[2000]})", ['year' => 2000]) !!}</li>
+                    <li class="year_links">{!! link_to_route('works.by_release_age_index', "2010 ({$counts_of_works_by_age[2010]})", ['year' => 2010]) !!}</li>
+                    <li class="year_links">{!! link_to_route('works.by_release_age_index', "2020 ({$counts_of_works_by_age[2020]})", ['year' => 2020]) !!}</li>
                 </ul>
-            </details>
-           
-            <details class="mt-4 mb-3">
-                <summary>ジャンルから探す</summary>
+            </div>
+            <details id="genre_links_area" class="mb-3">
+                <summary class="mb-3">ジャンルから探す</summary>
                 <div class="d-flex justify-content-start">
                 @for ($i = 0;$i < count($genres);$i++)
                     @php
