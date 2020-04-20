@@ -188,6 +188,9 @@
     font-family: 'GFS Neohellenic', sans-serif;
 }
 
+#user_unit #workphotos_area a{
+    text-decoration: none;
+}
 
 /**
  * 

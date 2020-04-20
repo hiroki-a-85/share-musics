@@ -7,13 +7,17 @@
         <div id="workphotos_area">
             @foreach ($works as $work)
                 @if ($work->s3_artwork_url == "No Photo")
-                    <div id="work_mini_photo_false" class="rounded d-inline-block">
-                        <i class="fas fa-compact-disc my-grey my-small"></i>
-                    </div>
+                    <a href="/works/{{ $work->id }}">
+                        <div id="work_mini_photo_false" class="rounded d-inline-block">
+                            <i class="fas fa-compact-disc my-grey my-small"></i>
+                        </div>
+                    </a>
                 @else
-                    <div id="work_mini_photo" class="rounded d-inline-block">
-                        <img class="img-fluid" src="{{ $work->s3_artwork_url }}">
-                    </div>
+                    <a href="/works/{{ $work->id }}">
+                        <div id="work_mini_photo" class="rounded d-inline-block">
+                            <img class="img-fluid" src="{{ $work->s3_artwork_url }}">
+                        </div>
+                    </a>
                 @endif
             @endforeach
         </div>
