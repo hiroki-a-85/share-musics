@@ -5,7 +5,7 @@
         <h3>作品を登録／<br id="work_submit_title">お気に入りに追加</h3>
     </div>
 
-    <div class="container">
+    <div class="container mb-5">
        <div class="row">
             <div id="work_submit" class="col-sm-8 offset-sm-2">
     

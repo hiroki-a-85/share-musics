@@ -43,10 +43,6 @@
         text-align: center;
     }
     
-    .top-wrapper .title{
-        font-size:30px;
-    }
-    
     #work_submit_title{
         display:none;
     }
@@ -92,17 +88,6 @@
         text-align: center;
     } 
     
-    .top-wrapper .title{
-        font-size:25px;
-    }
-}
-
-.top-wrapper{
-    background-image: url(/images/photoac_record1.jpg);
-    background-size:cover;
-    padding:70px 20px;
-    color:white;
-    text-align: center;
 }
 
 
@@ -207,6 +192,102 @@
 /**
  * 
  *
+ * トップページ画像部
+ */
+
+.top-wrapper{
+    background-image: url(/images/photoac_record1.jpg);
+    background-size:cover;
+    padding:65px 20px;
+    color:white;
+    text-align: center;
+    margin-right:65px; 
+    margin-left:65px;
+}
+
+@media (max-width: 800px) {
+    .top-wrapper{
+        margin-right:10px; 
+        margin-left:10px;
+        min-width: 700px;
+    }
+}
+
+.top-wrapper .title{
+        font-size:30px;
+    }
+
+@media (max-width: 576px) {
+    .top-wrapper{
+        min-width: initial;
+        min-width: auto;
+        background-image: url(/images/photoac_record2.jpg);
+        margin-right:10px; 
+        margin-left:10px;
+    }
+    
+    .top-wrapper .title{
+        font-size:20px;
+    }
+}
+
+
+/**
+ * 
+ *
+ * トップページ ユーザー一覧と検索ボックスなどのエリア
+ */
+ 
+#search_area, #users_index{
+    padding:15px;
+}
+
+@media (min-width: 801px) {
+    #users_index_and_search{
+        margin-right: 65px;
+        margin-left:65px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    #users_index_and_search #users_index{
+        width:45%;
+    }
+    
+    #users_index_and_search #search_area{
+        width:45%;
+    }
+}
+
+@media (min-width: 576px) and ( max-width:800px){
+    #users_index_and_search{
+        margin-right: 10px;
+        margin-left: 10px;
+        min-width: 700px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    #users_index_and_search #users_index{
+        width:45%;
+    }
+    
+    #users_index_and_search #search_area{
+        width:45%;
+    }
+}
+
+@media (max-width: 575px) {
+    #users_index_and_search{
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
+
+
+/**
+ * 
+ *
  * 検索フォームへのスタイル
  */
 
@@ -230,7 +311,7 @@
     font-size:15px;/*アイコンサイズ*/
 }
 
-@media (max-width: 576px) {
+@media (max-width: 992px) {
     #search_form_input{
         width:265px;
     }
@@ -242,4 +323,54 @@
 
 #search_form_btn:hover{
     color:#7fbfff;
+}
+
+
+
+/**
+ * 
+ * test
+ * レスポンシブレイアウト動作確認
+ */
+ 
+#test-wrapper{
+    min-width: initial;
+    min-width: auto;
+}
+
+@media (min-width: 576px) {
+    #test-wrapper{
+        min-width:900px;
+        margin: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    #test-wrapper #test-left{
+        width:60%;
+        background-color: #a6c8b2;
+        height:300px;
+    }
+    
+    #test-wrapper #test-right{
+        width:30%;
+        background-color: #fdeff2;
+        height:300px;
+    }
+}
+
+@media (max-width: 575px) {
+    #test-wrapper{
+        margin: 10px;
+    }
+    
+    #test-wrapper #test-left{
+        background-color: #e0ebaf; 
+        height:300px;
+    }
+    
+    #test-wrapper #test-right{
+        background-color: #fdeff2;
+        height:300px;
+    }
 }
