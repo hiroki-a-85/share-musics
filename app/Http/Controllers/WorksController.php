@@ -107,6 +107,11 @@ class WorksController extends Controller
         return view('works.result_works_index', ['works' => $works, 'genre' => $genre]);
     }
     
+    /**
+     * 
+     * 
+     * 
+     **/
     public function search(Request $request)
     {
         $keyword = $request->input('keyword');

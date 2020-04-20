@@ -1,11 +1,10 @@
-
 /**
  * 
  *
- * ウインドウ幅576px「以上」の時に適用されるスタイル
+ * ウインドウ幅577px「以上」の時に適用されるスタイル
  */
 
-@media (min-width: 576px) {
+@media (min-width: 577px) {
     #work_submit .submit_label{
         text-align: right;
     }
@@ -90,7 +89,6 @@
     
 }
 
-
 #work_unit #artwork{
     width:120px;
     height:120px;
@@ -131,30 +129,6 @@
     text-align: center;
 }
 
-#work_show_wrapper #artist_name{
-    font-weight: bold;
-    font-size: 24px;
-    text-align: center;
-}
-
-#work_show_wrapper #work_name{
-    font-style:oblique;
-    font-size: 17px;
-    text-align: center;
-}
-
-#work_show_wrapper #release_age{
-    font-style:oblique;
-    opacity:0.7;
-    text-align: center;
-}
-
-#work_show_wrapper #genres{
-    font-style:oblique;
-    font-weight: 200;
-    text-align: center;
-}
-
 #work_submit .droplist_first{
     width:150px;
 }
@@ -191,6 +165,96 @@
 #user_unit #workphotos_area a{
     text-decoration: none;
 }
+
+/**
+ * 
+ *
+ * 作品詳細ページ
+ */
+ 
+#work_show_wrapper{
+    min-width: initial;
+    min-width: auto;
+}
+
+#work_show_wrapper #artist_name{
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+}
+
+#work_show_wrapper #work_name{
+    font-style:oblique;
+    font-size: 17px;
+    text-align: center;
+}
+
+#work_show_wrapper #release_age{
+    font-style:oblique;
+    opacity:0.7;
+    text-align: center;
+}
+
+#work_show_wrapper #genres{
+    font-style:oblique;
+    font-weight: 200;
+    text-align: center;
+}
+
+@media (min-width: 885px) {
+    #work_show_wrapper{
+        margin-top: 30px;
+        margin-left: 50px;
+        margin-right: 50px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    #work_show_wrapper #side_work_area{
+        margin-left: 40px;
+        width:45%;
+        width:370px;
+    }
+    
+    #work_show_wrapper #work_show_users_index{
+        width:45%;
+    }
+}
+
+@media (min-width: 577px) and ( max-width:885px){
+    #work_show_wrapper{
+        margin-top: 30px;
+        margin-left: 20px;
+        margin-right: 20px;
+        min-width:710px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    #work_show_wrapper #side_work_area{
+        width:45%;
+        max-width:370px;
+        min-width: 340px
+    }
+    
+    #work_show_wrapper #work_show_users_index{
+        width:50%;
+    }
+}
+
+@media (max-width: 576px) {
+    #work_show_wrapper{
+        margin-top: 30px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    
+    #work_show_wrapper #side_work_area{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
 
 /**
  * 
@@ -262,7 +326,7 @@
     }
 }
 
-@media (min-width: 576px) and ( max-width:800px){
+@media (min-width: 577px) and ( max-width:800px){
     #users_index_and_search{
         margin-right: 10px;
         margin-left: 10px;
@@ -280,7 +344,7 @@
     }
 }
 
-@media (max-width: 575px) {
+@media (max-width: 576px) {
     #users_index_and_search{
         margin-right: 10px;
         margin-left: 10px;
@@ -341,7 +405,7 @@
     min-width: auto;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 577px) {
     #test-wrapper{
         min-width:900px;
         margin: 10px;
@@ -362,7 +426,7 @@
     }
 }
 
-@media (max-width: 575px) {
+@media (max-width: 576px) {
     #test-wrapper{
         margin: 10px;
     }
