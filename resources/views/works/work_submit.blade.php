@@ -58,36 +58,27 @@
                     <div class="row">
                         {!! Form::label('genre', 'ジャンル：', ['class' => 'col-sm-4 submit_label']) !!}
                         
-                        <div class="col-sm-8">
-                            <details>
-                                <summary>ジャンル</summary>
-                                <table>
-                                    @for ($i = 0;$i < $genre_counts;$i++)
-                                    
-                                        <!-- $genre_countsが奇数かつ$iが最後の数字の時、一行１項目にするため -->
-                                        @if ($genre_counts % 2 == 1 && $i == $genre_counts - 1)
-                                            <tr>
-                                                
-                                                <!-- name属性の文字列の末尾に[]をつける（今回は、「genre[]」）-->
-                                                <!-- これにより複数選択した時、受け取りの変数を配列の形でそれぞれの値を取得できる -->
-                                                <!-- 一つの選択でもやはり配列の形式 -->
-                                                <td class="droplist_first">{{ Form::checkbox('genre[]', $genres[$i]->id) }}　{{ $genres[$i]->genre_name }}</td>
-                                            </tr>
-                                        @elseif ($i % 2 == 1)
-                                            @continue
-                                        @else
-                                            <tr>
-                                                <td class="droplist_first">{{ Form::checkbox('genre[]', $genres[$i]->id) }}　{{ $genres[$i]->genre_name }}</td>
-                                                <td>{{ Form::checkbox('genre[]', $genres[$i+1]->id) }}　{{ $genres[$i+1]->genre_name }}</td>
-                                            </tr>
-                                        @endif
-                                    @endfor
-                                </table>
-                            </details>
+                        <div class="col-sm-8 d-flex justify-content-start">
+                        @for ($i = 0;$i < $genre_counts;$i++)
+                            @if ($i == 0)
+                            <ul class="list-unstyled">
+                                <li class="droplist_first">{{ Form::checkbox('genre[]', $genres[$i]->id) }}　{{ $genres[$i]->genre_name }}</li> 
+                                @elseif ($i >= 1 && $i <= 13)
+                                <li class="droplist_first">{{ Form::checkbox('genre[]', $genres[$i]->id) }}　{{ $genres[$i]->genre_name }}</li>
+                            @elseif ($i == 14)
+                            </ul>
+                            <ul class="list-unstyled">
+                                <li>{{ Form::checkbox('genre[]', $genres[$i]->id) }}　{{ $genres[$i]->genre_name }}</li>
+                                @elseif ($i >= 15 && $i < count($genres) - 1)
+                                <li>{{ Form::checkbox('genre[]', $genres[$i]->id) }}　{{ $genres[$i]->genre_name }}</li>
+                                @else
+                            </ul>
+                            @endif
+                        @endfor 
                         </div>
                     </div>
                     
-                    <div class="mt-5 text-center">
+                    <div class="mt-2 text-center">
                         {!! Form::submit('登録する', ['class' => 'btn btn-primary d-inline-block submit_page_btns mr-3']) !!}
                         {!! link_to_route('users.show', '戻る', ['id' => Auth::id()], ['class' => 'btn btn-light submit_page_btns']) !!}
                     </div>
