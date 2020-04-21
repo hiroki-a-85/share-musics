@@ -43,8 +43,8 @@ Route::group(['middleware' => ['auth']], function ()
         Route::delete('unfavorite', 'FavoritesController@destroy')->name('favorites.unfavorite');
     });
     
-    //作品登録ページ
-    Route::resource('works', 'WorksController', ['only' => ['create', 'store']]);
+    //作品登録、編集、削除
+    Route::resource('works', 'WorksController', ['only' => ['create', 'store', 'update', 'destroy', 'edit']]);
 });
 
 //作品投稿ページ(works.create)へアクセスする時、

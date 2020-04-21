@@ -91,6 +91,31 @@ class WorksController extends Controller
         return view('works.work_show', ['work' => $work, 'genres' => $genres, 'users' => $users, 'three_fav_works' => $three_fav_works]);
     }
     
+    public function edit($id)
+    {
+        //
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function destroy($id)
+    {
+        $work = Work::find($id);
+        
+        if (\Auth::id() !== $work->user_id) {
+            return back();
+        }
+        
+        Storage::disk('s3')->delete($work->artwork_path);
+        
+        $work->delete();
+        
+        return redirect()->route('users.submit_index', ['id' => \Auth::id()]);
+    }
+    
     public function by_release_age_index($year)
     {
         $works = Work::where('release_age_key', $year)->paginate(4);

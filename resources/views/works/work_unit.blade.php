@@ -17,9 +17,19 @@
                 @if (!Request::is('users/*/submit') && Auth::id() == $user->id)
                
                    <!-- 「お気に入り」の一覧から外すボタン -->
-                   <div id="remove_btn" class="d-inline-block mb-0">
+                   <div class="d-inline-block mb-0">
                        {!! Form::open(['route' => ['favorites.unfavorite', $work->id], 'method' => 'delete']) !!}
                            {!! Form::submit('一覧から外す', ['class' => "btn btn-light btn-sm"]) !!}
+                       {!! Form::close() !!}
+                   </div>
+                @endif
+                
+                @if (Request::is('users/*/submit') && Auth::id() == $user->id)
+               
+                   <!-- 「登録した作品」の一覧から外すボタン -->
+                   <div class="d-inline-block mb-0">
+                       {!! Form::open(['route' => ['works.destroy', $work->id], 'method' => 'delete']) !!}
+                           {!! Form::submit('削除する', ['class' => "btn btn-dark btn-sm"]) !!}
                        {!! Form::close() !!}
                    </div>
                 @endif
