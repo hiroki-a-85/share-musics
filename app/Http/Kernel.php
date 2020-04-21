@@ -14,6 +14,13 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
+        
+        //UploadSizeCheckMiddleware:php.iniのpost_max_sizeの設定値を超えたファイルが
+        //アップロードされた時、Laravelのエラー画面ではなく、エラーメッセージを表示させる
+        //「ValidatePostSize」よりも上に記述する
+        //StartSessionはセッションを利用してメッセージを渡すwithメソッドを使うため
+        \Illuminate\Session\Middleware\StartSession::class,
+        \App\Http\Middleware\UploadSizeCheckMiddleware::class,
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
@@ -30,7 +37,13 @@ class Kernel extends HttpKernel
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
+            
+            //上のグローバルミドルウェアでのUploadSizeCheckMiddleware、StartSessionと関連
+            //ミドルウェアからコントローラへ処理が流れた時、
+            //他のバリデーション結果を保存する$errors変数の内容が消えてしまい取得出来ない
+            //ここではStartSessionをコメントアウトしておく
+            
+            // \Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
