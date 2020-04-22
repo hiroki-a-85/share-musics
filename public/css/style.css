@@ -5,7 +5,7 @@
  */
 
 @media (min-width: 577px) {
-    #work_submit .submit_label{
+    .submit_label{
         text-align: right;
     }
     
@@ -129,15 +129,15 @@
     text-align: center;
 }
 
-#work_submit .droplist_first{
+.droplist_first{
     width:150px;
 }
 
-#work_submit .submit_page_btns{
+.submit_page_btns{
     width:100px;
 }
 
-#work_submit .radios{
+.radios{
     display: inline-block;
     width:90px;
 }

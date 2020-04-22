@@ -25,13 +25,16 @@
                 @endif
                 
                 @if (Request::is('users/*/submit') && Auth::id() == $user->id)
-               
-                   <!-- 「登録した作品」の一覧から外すボタン -->
-                   <div class="d-inline-block mb-0">
-                       {!! Form::open(['route' => ['works.destroy', $work->id], 'method' => 'delete']) !!}
-                           {!! Form::submit('削除する', ['class' => "btn btn-dark btn-sm"]) !!}
-                       {!! Form::close() !!}
-                   </div>
+                    <div class="d-flex justify-content-start">
+                        <div class="d-inline-block mb-0">
+                            {!! link_to_route('works.edit', '編集する', ['id' => $work->id], ['class' => "btn btn-info btn-sm mr-2"]) !!}
+                        </div>
+                        <div class="d-inline-block mb-0">
+                            {!! Form::open(['route' => ['works.destroy', $work->id], 'method' => 'delete']) !!}
+                               {!! Form::submit('削除する', ['class' => "btn btn-dark btn-sm"]) !!}
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
                 @endif
             @endif
     </div>

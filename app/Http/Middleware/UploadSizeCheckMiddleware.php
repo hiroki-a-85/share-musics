@@ -34,7 +34,7 @@ class UploadSizeCheckMiddleware
             //新しいページヘリダイレクトした後、
             //セッションへ保存したフラッシュデータのメッセージを取り出して、表示できる
             //ビューではsession('message_post_max_size')で表示させる
-            return redirect()->route('works.create')->with('message_post_max_size', 'This file is too large.');
+            return back()->with('message_post_max_size', 'This file is too large.');
         }      
         
         return $next($request);

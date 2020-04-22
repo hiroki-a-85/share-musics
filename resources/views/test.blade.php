@@ -1,16 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <p>this is test page.</p>
+    <p>this is {{ $work->artist_name }} - {{ $work->work_name }} update page.</p>
 
-    <div id="test-wrapper">
-        <div id="test-right">
-            レフトサイド
-        </div>
-        
-        <div id="test-left">
-            ライトサイド
-        </div>
-    </div>
-
+    <p>{{ var_dump($img_path) }}</p>
 @endsection
